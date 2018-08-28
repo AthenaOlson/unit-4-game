@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">  
+  <title>The Crystal Collector</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- head of page -->
+    <header>
+        <h1>the crystal collector</h1>
+        <!-- <div id="crystal-background">
+            <img src="assets/images/crystal-background.jpg" alt="crystals">
+        </div> -->
+    </header>
+
+    <!-- instructions for page -->
+    <div class="instructions">
+        <ul>
+            <li>A random number is slected at the start of each game.</li>
+            <li>Click on one of the four crystals to add a specific number of points to your total score.</li>
+            <li>Win the game by matching your total score to the randomly selected number.</li>
+            <li>Lose the game if your total score goes above the randomly selected number.</li>
+            <li>When the game restarts, the game will select a new value for each crystal.</li>
+        </ul>
+    </div>
+
+    <!-- scoreboard for game as it is being played -->
+    <div class="active-scoreboard">
+        <div id="goal-label" class="badge">goal</div>
+        <div id="score-label" class="badge">score</div>
+        <span id="goal">0</span>:<span id="score">0</span>
+    </div>
+
+    <div class="result">
+        <p id="p"></p>
+    </div>
+
+    <!-- images -->
+    <div class="choices">
+        <div class="choice" id="per">
+            <img src="assets/images/peridot.jpeg" alt="peridot">
+        </div>
+        <div class="choice" id="pSapp">
+            <img src="assets/images/pinkSapphire.jpeg" alt="pinkSapphire">
+        </div>
+        <div class="choice" id="am">
+            <img src="assets/images/amethyst.jpeg" alt="amethyst">
+        </div>
+        <div class="choice" id="yel">
+            <img src="assets/images/yellowSapphire.jpeg" alt="yellowSapphire">
+        </div>
+    </div>
+
+ <!-- scoreboard for tallied game -->
+ <div class="tallied-scoreboard">
+        <div id="wins-label" class="badge">wins</div>
+        <div id="losses-label" class="badge">losses</div>
+        <span id="wins">0</span>:<span id="losses">0</span>
+    </div>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+
+</html>
