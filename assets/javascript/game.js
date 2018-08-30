@@ -17,9 +17,16 @@ $(document).ready(function() {
 });
 
 
+    
+// When game ends, I need code to:
+// Reset #goal
+// Reset crystal value (by id? #per, #pSapp, #am, #yel)
+// Remove getElementById <p> "you won!" and "you lose!"
+// I tried to create a restart game function. I could not get the code to recognize the code that makes the game work. My console kept returning errors that I can't figure out.
+    
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-    
 }
 
 var targetNumber = getRandomInt(19, 120);
@@ -27,13 +34,13 @@ $("#goal").text(targetNumber);
 
 var counter = 0;
 
-
 var crystals = {
     per: { value: getRandomInt(1,12) },
     pSapp: { value: getRandomInt(1,12) },
     am: { value: getRandomInt(1,12) },
     yel: { value: getRandomInt(1,12) },  
     }
+// }
 // console.log("valueOfPerCrystal",crystals.per.value)
 // console.log("valueOfpSappCrystal",crystals.pSapp.value)
 // console.log("valueOfAmCrystal",crystals.am.value)
@@ -48,16 +55,19 @@ $("#per").on("click", function() {
         paragraph.textContent += "you won!";
         var winningNumber = (counter =+1);
         $("#wins").html(winningNumber);
+        // restartGame()
     }
-
+    
     else if (counter >= targetNumber) {
         var paragraph = document.getElementById("p");
         paragraph.textContent += "you lost!";
         var losingNumber = (counter =+1);
         $("#losses").text(losingNumber);
+        // restartGame()
     }
 
   });
+  
 
   $("#pSapp").on("click", function() {
     counter += crystals.pSapp.value;
@@ -95,7 +105,7 @@ $("#per").on("click", function() {
         var losingNumber = (counter =+1);
         $("#losses").text(losingNumber);
     }
-  });
+    });
 
   $("#yel").on("click", function() {
     counter += crystals.yel.value;
@@ -114,4 +124,6 @@ $("#per").on("click", function() {
         var losingNumber = (counter =+1);
         $("#losses").text(losingNumber);
     }
-    });
+ 
+    })
+    

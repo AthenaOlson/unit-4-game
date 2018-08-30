@@ -11,12 +11,20 @@ body {
 }
 header {
     background: white;
+    /* background: url("../images/crystal-background.jpg"); */
     padding: 25px 0;
     font-family: 'Lobster', cursive;
     font-size: 75px;
     letter-spacing: 5px;
     word-spacing: 5px;
+    height: 150px;
+    border-bottom: 2px white solid;
 }
+
+/* #crystal-background {
+    background-repeat: repeat;
+    width: auto;
+} */
 
 h1 {
     color: #251633;
