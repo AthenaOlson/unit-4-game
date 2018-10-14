@@ -52,10 +52,13 @@ li {
     text-align: center;
     font-size: 35px;
     letter-spacing: 3px;
+    height: 50px;
+    margin-bottom: 20px;
+    line-height: 1.2;
     /* margin: 10px 0; */
 }
 .active-scoreboard {
-    margin: 40px auto;
+    margin: 30px auto 25px auto;
     border: 3px solid white;
     width: 225px;
     color: white;
@@ -100,6 +103,7 @@ img {
 
 .choices {
     text-align: center;
+    margin-top: 30px;
     /* margin: 20px 0; */
 }
 
@@ -113,6 +117,13 @@ img {
 .choice:hover {
     cursor: pointer;
 }
+
+#play-again:hover {
+    cursor: pointer;
+    color: palevioletred;
+    transition-duration: 001s;
+}
+
 
 .tallied-scoreboard {
     margin: 40px auto;

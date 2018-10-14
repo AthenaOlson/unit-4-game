@@ -14,116 +14,237 @@
 // not yet in code: something to tell the user if they win or lose a game
 
 $(document).ready(function() {
+console.log("ready!")
+
+// new game from beginning
+// crystal variables
+    var crystal = {
+        green: {
+            name: "green",
+            value: 0
+        },
+        pink: {
+            name: "pink",
+            value: 0
+        },
+        yellow: {
+            name: "yellow",
+            value: 0
+        },
+        purple: {
+            name: "purple",
+            value: 0
+        }
+    };
+
+    // scores current and target
+    var currentScore = 0;
+    var targetScore = 0;
+
+    // wins and losses
+    var winCount = 0;
+    var lossCount = 0;
+    // global variable
+    var playing = false;
+    // functions
+    // gets random number
+    var getRandom = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    // starts and restarts the game
+    var startGame = function() {
+
+        
+
+        currentScore = 0;
+
+        targetScore = getRandom(19, 120);
+
+        crystal.green.value = getRandom(1, 12);
+        crystal.pink.value = getRandom(1, 12);
+        crystal.yellow.value = getRandom(1, 12);
+        crystal.purple.value = getRandom(1, 12);
+
+    $("#score").text(currentScore);
+    $("#goal").text(targetScore);
+
+    //    console testing
+    console.log("I'm here");
+    console.log("Goal Score: " + targetScore);
+    console.log("Green Crystal: " + crystal.green.value + " | Pink Crystal: " + crystal.pink.value + " | Yellow Crystal: " + crystal.yellow.value + " | Purple Crystal: " + crystal.purple.value);
+    };
+    // check if user won or lost the game, then resets the game
+    var checkWin = function() {
+
+        if (currentScore > targetScore) {
+            var paragraph = document.getElementById("p");
+            paragraph.textContent = ("Sorry, you lost!");
+            $("#play-again").show();
+            playing = false;
+            console.log("You Lost!");
+            lossCount++;
+            $("#losses").text(lossCount);
+        } else if (currentScore === targetScore) {
+            var paragraph = document.getElementById("p");
+            paragraph.textContent = ("You won!");
+            $("#play-again").show();
+            playing = false;
+            console.log("You won!");
+            winCount++;
+            $("#wins").text(winCount);
+        }
+    };
+
+    // builds crystal click function
+    var addValues = function(clickedCrystal) {
+        currentScore += clickedCrystal.value;
+        $("#score").text(currentScore);
+        checkWin();
+        console.log("Your Score: " + currentScore);
+    };
+
+    // Main process
+    startGame();
+
+    $("#green").click(function() {
+        if (playing) {
+            addValues(crystal.green);
+        }    
+    });
+
+    $("#pink").click(function() {
+        if (playing) {
+            addValues(crystal.pink);
+        }    
+    });
+
+    $("#yellow").click(function() {
+        if (playing) {
+            addValues(crystal.yellow);
+        }
+    });
+
+    $("#purple").click(function() {
+        if (playing) {
+            addValues(crystal.purple);
+        }
+    });
+
+    $("#play-again").click(function() {
+        var paragraph = document.getElementById("p");
+        paragraph.textContent = ("");
+        startGame();
+        $("#play-again").hide();
+        playing = true;
+    })
+
 });
 
 
+
+
+
+
+
+
+// end new....
+
+
+// var targetNumber = getRandomInt(19, 120);
+// $("#goal").text(targetNumber);
+
+// var counter = 0;
+
+// var crystals = {
+//     per: { value: getRandomInt(1,12) },
+//     pSapp: { value: getRandomInt(1,12) },
+//     am: { value: getRandomInt(1,12) },
+//     yel: { value: getRandomInt(1,12) },  
+//     }
+// // }
+// // console.log("valueOfPerCrystal",crystals.per.value)
+// // console.log("valueOfpSappCrystal",crystals.pSapp.value)
+// // console.log("valueOfAmCrystal",crystals.am.value)
+// // console.log("valueOfYelCrystal",crystals.yel.value)
+
+// $("#per").on("click", function() {
+//     counter += crystals.per.value;
+//     $("#score").text(counter);
+
+//     if (counter === targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you won!";
+//         var winningNumber = (counter =+1);
+//         $("#wins").html(winningNumber);
+//         // restartGame()
+//     }
     
-// When game ends, I need code to:
-// Reset #goal
-// Reset crystal value (by id? #per, #pSapp, #am, #yel)
-// Remove getElementById <p> "you won!" and "you lose!"
-// I tried to create a restart game function. I could not get the code to recognize the code that makes the game work. My console kept returning errors that I can't figure out.
-    
+//     else if (counter >= targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you lost!";
+//         var losingNumber = (counter =+1);
+//         $("#losses").text(losingNumber);
+//         // restartGame()
+//     }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-var targetNumber = getRandomInt(19, 120);
-$("#goal").text(targetNumber);
-
-var counter = 0;
-
-var crystals = {
-    per: { value: getRandomInt(1,12) },
-    pSapp: { value: getRandomInt(1,12) },
-    am: { value: getRandomInt(1,12) },
-    yel: { value: getRandomInt(1,12) },  
-    }
-// }
-// console.log("valueOfPerCrystal",crystals.per.value)
-// console.log("valueOfpSappCrystal",crystals.pSapp.value)
-// console.log("valueOfAmCrystal",crystals.am.value)
-// console.log("valueOfYelCrystal",crystals.yel.value)
-
-$("#per").on("click", function() {
-    counter += crystals.per.value;
-    $("#score").text(counter);
-
-    if (counter === targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you won!";
-        var winningNumber = (counter =+1);
-        $("#wins").html(winningNumber);
-        // restartGame()
-    }
-    
-    else if (counter >= targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you lost!";
-        var losingNumber = (counter =+1);
-        $("#losses").text(losingNumber);
-        // restartGame()
-    }
-
-  });
+//   });
   
 
-  $("#pSapp").on("click", function() {
-    counter += crystals.pSapp.value;
-    $("#score").text(counter);
+//   $("#pSapp").on("click", function() {
+//     counter += crystals.pSapp.value;
+//     $("#score").text(counter);
 
-    if (counter === targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you won!";
-        var winningNumber = (counter =+1);
-        $("#wins").html(winningNumber);
-    }
+//     if (counter === targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you won!";
+//         var winningNumber = (counter =+1);
+//         $("#wins").html(winningNumber);
+//     }
 
-    else if (counter >= targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you lost!";
-        var losingNumber = (counter =+1);
-        $("#losses").text(losingNumber);
-    }
-  });
+//     else if (counter >= targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you lost!";
+//         var losingNumber = (counter =+1);
+//         $("#losses").text(losingNumber);
+//     }
+//   });
 
-  $("#am").on("click", function() {
-    counter += crystals.am.value;
-    $("#score").text(counter);
+//   $("#am").on("click", function() {
+//     counter += crystals.am.value;
+//     $("#score").text(counter);
 
-    if (counter === targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you won!";
-        var winningNumber = (counter =+1);
-        $("#wins").html(winningNumber);
-    }
+//     if (counter === targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you won!";
+//         var winningNumber = (counter =+1);
+//         $("#wins").html(winningNumber);
+//     }
 
-    else if (counter >= targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you lost!";
-        var losingNumber = (counter =+1);
-        $("#losses").text(losingNumber);
-    }
-    });
+//     else if (counter >= targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you lost!";
+//         var losingNumber = (counter =+1);
+//         $("#losses").text(losingNumber);
+//     }
+//     });
 
-  $("#yel").on("click", function() {
-    counter += crystals.yel.value;
-    $("#score").text(counter);
+//   $("#yel").on("click", function() {
+//     counter += crystals.yel.value;
+//     $("#score").text(counter);
 
-    if (counter === targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you won!";
-        var winningNumber = (counter =+1);
-        $("#wins").html(winningNumber);
-    }
+//     if (counter === targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you won!";
+//         var winningNumber = (counter =+1);
+//         $("#wins").html(winningNumber);
+//     }
 
-    else if (counter >= targetNumber) {
-        var paragraph = document.getElementById("p");
-        paragraph.textContent += "you lost!";
-        var losingNumber = (counter =+1);
-        $("#losses").text(losingNumber);
-    }
+//     else if (counter >= targetNumber) {
+//         var paragraph = document.getElementById("p");
+//         paragraph.textContent += "you lost!";
+//         var losingNumber = (counter =+1);
+//         $("#losses").text(losingNumber);
+//     }
  
-    })
+//     })
     
